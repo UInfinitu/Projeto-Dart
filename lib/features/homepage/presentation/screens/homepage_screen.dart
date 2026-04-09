@@ -6,7 +6,7 @@ import '../widgets/cache_list_item.dart';
 
 // ============= SCREEN PRINCIPAL =============
 class HomepageScreen extends StatefulWidget {
-  const HomepageScreen({Key? key}) : super(key: key);
+  const HomepageScreen({super.key});
 
   @override
   State<HomepageScreen> createState() => _HomepageScreenState();
@@ -298,7 +298,7 @@ void main() {
 }
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {

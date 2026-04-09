@@ -44,8 +44,8 @@ class CacheDetailCard extends StatelessWidget {
 
   const CacheDetailCard({
     required this.cache,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
