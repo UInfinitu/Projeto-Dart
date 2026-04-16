@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/side_panel.dart';
 import '../widgets/layout.dart';
-import './register_screen.dart';
 
 import '../../../../core/theme/app_colors.dart';
 
@@ -133,26 +133,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(fontSize: 16),
                       ),
                       TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder:
-                                  (context, animation, secondaryAnimation) =>
-                                      const RegisterScreen(),
-                              transitionDuration: Duration.zero,
-                              reverseTransitionDuration: Duration.zero,
-                              transitionsBuilder:
-                                  (
-                                    context,
-                                    animation,
-                                    secondaryAnimation,
-                                    child,
-                                  ) {
-                                    return child;
-                                  },
-                            ),
-                          );
+                       onPressed: () {
+                          context.go('/register'); 
                         },
                         child: const Text(
                           "Crie uma",

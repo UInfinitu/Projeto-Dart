@@ -4,10 +4,6 @@ import 'star_rating.dart';
 import 'terrain_indicator.dart';
 import '../../domain/models/geocache.dart';
 
-
-
-import 'package:flutter/material.dart';
-
 /// Widget auxiliar para mostrar métrica
 class _MetricCard extends StatelessWidget {
   final String label;
