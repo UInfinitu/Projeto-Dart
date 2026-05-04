@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/side_panel.dart';
 import '../widgets/layout.dart';
-import './login_screen.dart';
 
 import '../../../../core/theme/app_colors.dart';
 
@@ -139,26 +139,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: TextStyle(fontSize: 16),
                       ),
                       TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder:
-                                  (context, animation, secondaryAnimation) =>
-                                      const LoginScreen(),
-                              transitionDuration: Duration.zero,
-                              reverseTransitionDuration: Duration.zero,
-                              transitionsBuilder:
-                                  (
-                                    context,
-                                    animation,
-                                    secondaryAnimation,
-                                    child,
-                                  ) {
-                                    return child;
-                                  },
-                            ),
-                          );
+                       onPressed: () {
+                          context.go('/'); 
                         },
                         child: const Text(
                           "Faça o Login",
