@@ -23,8 +23,8 @@ class AuthValidators {
     final requiredError = required(value, fieldName: 'A senha');
     if (requiredError != null) return requiredError;
 
-    if (value!.length < 6) {
-      return 'A senha deve ter no mínimo 6 caracteres';
+    if (value!.length < 8) {
+      return 'A senha deve ter no mínimo 8 caracteres';
     }
     return null;
   }
@@ -36,6 +36,9 @@ class AuthValidators {
     if (value!.length < 8) return 'A senha deve ter no mínimo 8 caracteres';
     if (!value.contains(RegExp(r'[A-Z]'))) {
       return 'Inclua ao menos uma letra maiúscula';
+    }
+    if (!value.contains(RegExp(r'[a-z]'))) {
+      return 'Inclua ao menos uma letra minúscula';
     }
     if (!value.contains(RegExp(r'[0-9]'))) {
       return 'Inclua ao menos um número';
