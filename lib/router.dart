@@ -5,19 +5,13 @@ import 'features/autenticacao/presentation/screens/register_screen.dart';
 import 'features/homepage/presentation/screens/homepage_screen.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/login',
   routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const LoginScreen(),
-    ),
+    GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
     GoRoute(
       path: '/register',
       builder: (context, state) => const RegisterScreen(),
     ),
-    GoRoute(
-      path: '/homepage',
-      builder: (context, state) => const HomepageScreen(),
-    ),
+    GoRoute(path: '/', builder: (context, state) => const HomepageScreen()),
   ],
 );
