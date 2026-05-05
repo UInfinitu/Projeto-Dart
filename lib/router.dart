@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:projeto_integrador/providers/Servico_Autenticacao.dart';
+
+import 'providers/servico_autenticacao.dart';
 
 import 'features/autenticacao/presentation/screens/login_screen.dart';
 import 'features/autenticacao/presentation/screens/register_screen.dart';
@@ -9,12 +10,18 @@ import 'features/homepage/presentation/screens/homepage_screen.dart';
 final servicoAuth = ServicoAutenticacao();
 
 final GoRouter router = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/login',
+  refreshListenable: servicoAuth,
   redirect: (BuildContext context, GoRouterState state) {
     final autenticado = servicoAuth.autenticado;
-    final naRotaDeLogin = state.matchedLocation == "./login";
+    final naRotaDeLogin = state.matchedLocation == "/login";
+    final naRotaDeCadastro = state.matchedLocation == "/register";
 
-    if (!autenticado && !naRotaDeLogin) {
+    print(autenticado);
+    print(naRotaDeLogin);
+    print(naRotaDeCadastro);
+
+    if (!autenticado && !naRotaDeLogin && !naRotaDeCadastro) {
       return '/login';
     }
 
@@ -25,6 +32,7 @@ final GoRouter router = GoRouter(
     // Caso não necessite de redirecionamento
     return null;
   },
+
   routes: [
     GoRoute(
       path: '/login',

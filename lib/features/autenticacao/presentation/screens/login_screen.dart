@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../router.dart';
+
 import '../widgets/side_panel.dart';
 import '../widgets/layout.dart';
 import '../widgets/login_form.dart';
@@ -25,7 +27,10 @@ class LoginScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  LoginForm(onSuccess: () => context.go('/')),
+                  LoginForm(onSuccess: () { 
+                    servicoAuth.login();
+                    context.go('/');
+                  }),
 
                   const SizedBox(height: 20),
 
