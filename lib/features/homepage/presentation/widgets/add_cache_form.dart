@@ -65,10 +65,12 @@ class _AddCacheFormState extends State<AddCacheForm> {
               ],
             ),
             backgroundColor: Colors.green.shade700,
-            behavior: SnackBarBehavior.floating,
+            behavior: SnackBarBehavior.fixed,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
             ),
+            duration: const Duration(milliseconds: 2000),
+            showCloseIcon: true,
           ),
         );
         widget.onSuccess();
@@ -85,10 +87,12 @@ class _AddCacheFormState extends State<AddCacheForm> {
               ],
             ),
             backgroundColor: Colors.red.shade700,
-            behavior: SnackBarBehavior.floating,
+            behavior: SnackBarBehavior.fixed,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
             ),
+            duration: const Duration(milliseconds: 2000),
+            showCloseIcon: true,
           ),
         );
       }
