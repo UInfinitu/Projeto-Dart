@@ -43,6 +43,12 @@ class AuthValidators {
     if (!value.contains(RegExp(r'[0-9]'))) {
       return 'Inclua ao menos um número';
     }
+
+    String apenasEspeciais = value.replaceAll(RegExp(r'[a-zA-Z0-9]'), '');
+    if (apenasEspeciais.trim().isEmpty) {
+      return 'Inclua ao menos um caractere especial';
+    }
+
     return null;
   }
 
