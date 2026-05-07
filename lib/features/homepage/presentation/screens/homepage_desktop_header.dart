@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../../router.dart';
+
 import 'package:projeto_integrador/features/homepage/presentation/screens/addcache_modal_screen.dart';
 
 class HomepageHeader extends StatefulWidget {
@@ -13,12 +15,25 @@ class HomepageHeader extends StatefulWidget {
 class _HomepageHeaderState extends State<HomepageHeader> {
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 768;
+
+    if (isMobile) {
+      return _HomepageHeaderMobile();
+    } else {
+      return _HomepageHeaderDesktop();
+    }
+  }
+}
+
+class _HomepageHeaderDesktop extends StatelessWidget {
+  const _HomepageHeaderDesktop();
+
+  @override
+  Widget build(BuildContext context) {
     return AppBar(
-      
-      toolbarHeight: 80.0, // Defina a mesma altura aqui!
+      toolbarHeight: 80.0,
       backgroundColor: const Color.fromARGB(255, 2, 61, 138),
       elevation: 5,
-      // O 'title' agora contém o Logo + Textos
       title: Row(
         children: [
           Image.asset(
@@ -30,7 +45,8 @@ class _HomepageHeaderState extends State<HomepageHeader> {
           const SizedBox(width: 12),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min, // Importante para não quebrar na AppBar
+            mainAxisSize:
+                MainAxisSize.min, // Importante para não quebrar na AppBar
             children: [
               const Text(
                 "GeoQuest Desktop",
@@ -52,7 +68,7 @@ class _HomepageHeaderState extends State<HomepageHeader> {
         // Badge de "Encontrados"
         Container(
           margin: const EdgeInsets.symmetric(vertical: 8),
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
             color: Colors.blue[800],
             borderRadius: BorderRadius.circular(8),
@@ -64,84 +80,134 @@ class _HomepageHeaderState extends State<HomepageHeader> {
               const SizedBox(width: 8),
               Text(
                 '24 Encontrados',
-                style: TextStyle(color: Colors.blue[50], fontSize: 12),
+                style: TextStyle(color: Colors.blue[100], fontSize: 14),
               ),
             ],
           ),
         ),
-        const SizedBox(width: 8),
+
+        const SizedBox(width: 10),
+
         // Botão "Novo"
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 8),
-          decoration: BoxDecoration(
-            color: Colors.blue[800],
-            borderRadius: BorderRadius.circular(8),
+        FilledButton.icon(
+          style: FilledButton.styleFrom(
+            backgroundColor: Colors.blue[800],
+            foregroundColor: Colors.blue[100],
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
-          child: TextButton.icon( // TextButton.icon é mais simples que Row dentro de ElevatedButton
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) => const AddCacheModal(),
+            );
+          },
+          label: const Text("Novo cache"),
+          icon: const Icon(Icons.add),
+        ),
+        const SizedBox(width: 12),
+        IconButton(
+          onPressed: () => {servicoAuth.logout(), context.go('/login')},
+          icon: const Icon(Icons.exit_to_app, color: Colors.white),
+        ),
+        const SizedBox(width: 8),
+      ],
+    );
+  }
+}
+
+class _HomepageHeaderMobile extends StatefulWidget {
+  const _HomepageHeaderMobile();
+
+  @override
+  State<_HomepageHeaderMobile> createState() => _HomepageHeaderMobileState();
+}
+
+class _HomepageHeaderMobileState extends State<_HomepageHeaderMobile> {
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      toolbarHeight: 60.0,
+      backgroundColor: const Color.fromARGB(255, 2, 61, 138),
+      elevation: 4,
+      title: Row(
+        children: [
+          Image.asset(
+            "assets/images/logo.png",
+            width: 32,
+            height: 32,
+            color: Colors.white,
+          ),
+          const SizedBox(width: 8),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                "GeoQuest",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            decoration: BoxDecoration(
+              color: Colors.blue[800],
+              borderRadius: BorderRadius.circular(6),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.check_circle, size: 14, color: Colors.blue[100]),
+                const SizedBox(width: 4),
+                Text(
+                  '24',
+                  style: TextStyle(
+                    color: Colors.blue[50],
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+
+        Tooltip(
+          message: 'Adicionar cache',
+          child: IconButton(
             onPressed: () {
               showDialog(
                 context: context,
                 builder: (context) => const AddCacheModal(),
               );
             },
-            icon: const Icon(Icons.add, size: 16, color: Colors.white),
-            label: const Text(
-              'Novo',
-              style: TextStyle(color: Colors.white, fontSize: 12),
-            ),
+            icon: const Icon(Icons.add_circle, color: Colors.white),
+            iconSize: 24,
           ),
         ),
-        IconButton(
-          onPressed: () => {
-            servicoAuth.logout(),
-            context.go('/login')
-          },
-          icon: const Icon(Icons.exit_to_app, color: Colors.white),
+        Tooltip(
+          message: 'Sair',
+          child: IconButton(
+            onPressed: () {
+              servicoAuth.logout();
+              context.go('/login');
+            },
+            icon: const Icon(Icons.exit_to_app, color: Colors.white),
+            iconSize: 24,
+          ),
         ),
-        const SizedBox(width: 8), // Margem final
       ],
     );
   }
 }
-
-      // color: Colors.blue[900],
-      // padding: const EdgeInsets.all(16),
-      // child: Column(
-      //   crossAxisAlignment: CrossAxisAlignment.start,
-      //   children: [
-      //     Row(
-      //       children: [
-      //         Icon(
-      //           Icons.location_on,
-      //           color: Colors.white,
-      //           size: 24,
-      //         ),
-      //         const SizedBox(width: 8),
-      //         Column(
-      //           crossAxisAlignment: CrossAxisAlignment.start,
-      //           children: [
-      //             const Text(
-      //               'GeoQuest Desktop',
-      //               style: TextStyle(
-      //                 color: Colors.white,
-      //                 fontSize: 16,
-      //                 fontWeight: FontWeight.w700,
-      //               ),
-      //             ),
-      //             Text(
-      //               'Encontre tesouros escondidos',
-      //               style: TextStyle(
-      //                 color: Colors.blue[100],
-      //                 fontSize: 12,
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //       ],
-      //     ),
-      //     const SizedBox(height: 16),
-      //     Row(
-
-      //     ),
-      //   ],
-      // ),

@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:projeto_integrador/features/homepage/domain/models/geocache.dart';
 
 import 'package:projeto_integrador/features/homepage/presentation/widgets/cache_detail.dart';
-
 import '../widgets/cache_list_item.dart';
 
 class HomepageDesktop extends StatefulWidget {
-  // Os dados atuais (O que ele exibe)
   final FilterType selectedFilter;
   final int selectedCacheIndex;
   final String searchQuery;
   final List<GeoCache> filteredCaches;
-
-  // As ações (O que ele faz quando o usuário interage)
   final Function(String) onSearchChanged;
   final Function(FilterType) onFilterChanged;
   final Function(int) onCacheSelected;
@@ -33,28 +30,24 @@ class HomepageDesktop extends StatefulWidget {
 }
 
 class _HomepageDesktopState extends State<HomepageDesktop> {
-
   @override
   Widget build(BuildContext context) {
-
-    final currentCache = widget.filteredCaches.isNotEmpty && widget.selectedCacheIndex < widget.filteredCaches.length
+    final currentCache =
+        widget.filteredCaches.isNotEmpty &&
+            widget.selectedCacheIndex < widget.filteredCaches.length
         ? widget.filteredCaches[widget.selectedCacheIndex]
         : null;
 
     return Row(
       children: [
-        // Painel lateral com lista de caches
         SizedBox(
           width: 350,
           child: Column(
             children: [
-              // Header do painel
-              // Search bar
               Padding(
                 padding: const EdgeInsets.all(12),
                 child: TextField(
                   onChanged: (value) {
-                    // Chama a função passada pelo pai
                     widget.onSearchChanged(value);
                     widget.onCacheSelected(0);
                   },
@@ -70,32 +63,34 @@ class _HomepageDesktopState extends State<HomepageDesktop> {
                   ),
                 ),
               ),
-              // Filtros
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     FilterChip(
-                        label: const Text('Todos'),
-                        selected: widget.selectedFilter == FilterType.all,
-                        onSelected: (_) => widget.onFilterChanged(FilterType.all),
-                      ),
+                      label: const Text('Todos'),
+                      selected: widget.selectedFilter == FilterType.all,
+                      onSelected: (_) => widget.onFilterChanged(FilterType.all),
+                    ),
                     FilterChip(
-                        label: const Text('Encontrados'),
-                        selected: widget.selectedFilter == FilterType.found,
-                        onSelected: (_) => widget.onFilterChanged(FilterType.found),
-                      ),
+                      label: const Text('Encontrados'),
+                      selected: widget.selectedFilter == FilterType.found,
+                      onSelected: (_) =>
+                          widget.onFilterChanged(FilterType.found),
+                    ),
                     FilterChip(
-                        label: const Text('Pendente'),
-                        selected: widget.selectedFilter == FilterType.pending,
-                        onSelected: (_) => widget.onFilterChanged(FilterType.pending),
-                      ),
+                      label: const Text('Pendente'),
+                      selected: widget.selectedFilter == FilterType.pending,
+                      onSelected: (_) =>
+                          widget.onFilterChanged(FilterType.pending),
+                    ),
                   ],
                 ),
               ),
               const SizedBox(height: 12),
-              // Lista de caches
+
               Expanded(
                 child: ListView.builder(
                   itemCount: widget.filteredCaches.length,
@@ -111,16 +106,18 @@ class _HomepageDesktopState extends State<HomepageDesktop> {
             ],
           ),
         ),
-        // Painel direito com detalhes
+
         Expanded(
           child: Container(
             color: Colors.white,
-            child: currentCache != null 
-              ? SingleChildScrollView(child: CacheDetailCard(cache: currentCache)) 
-              : const Center(child: Text("Selecione um cache")),
+            child: currentCache != null
+                ? SingleChildScrollView(
+                    child: CacheDetailCard(cache: currentCache),
+                  )
+                : const Center(child: Text("Selecione um cache")),
           ),
         ),
-      ]
+      ],
     );
   }
 }
