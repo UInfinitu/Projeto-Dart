@@ -40,3 +40,33 @@ class SidePanel extends StatelessWidget {
     );
   }
 }
+
+class SidePanelMobile extends StatelessWidget {
+  const SidePanelMobile({super.key});
+
+  static const String logo = 'assets/images/logo.png';
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Image.asset(logo, height: 80),
+        const SizedBox(height: 8),
+        const Text(
+          'GeoQuest Desktop',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const Text(
+          'Encontre tesouros escondidos',
+          style: TextStyle(color: Colors.white, fontSize: 14),
+        ),
+      ],
+    );
+  }
+}
