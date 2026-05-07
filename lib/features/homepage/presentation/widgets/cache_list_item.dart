@@ -18,7 +18,6 @@ class CacheListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         color: isSelected ? Colors.blue[50] : Colors.white,
         border: Border(
@@ -89,7 +88,24 @@ class CacheListItem extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                           color: Colors.blue,
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(30)
+                        ),
+                        child: Icon(
+                          Icons.star,
+                          size: 16,
+                          color: Colors.white,
+                        ),
+                      ),
+                    const SizedBox(width: 5),
+                    if (cache.badge != null) // Mudar para = favorito != null do USUÁRIO logado
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(30)
                         ),
                         child: Icon(
                           Icons.favorite,

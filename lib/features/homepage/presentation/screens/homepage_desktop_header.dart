@@ -52,7 +52,7 @@ class _HomepageHeaderState extends State<HomepageHeader> {
         // Badge de "Encontrados"
         Container(
           margin: const EdgeInsets.symmetric(vertical: 8),
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
             color: Colors.blue[800],
             borderRadius: BorderRadius.circular(8),
@@ -64,33 +64,32 @@ class _HomepageHeaderState extends State<HomepageHeader> {
               const SizedBox(width: 8),
               Text(
                 '24 Encontrados',
-                style: TextStyle(color: Colors.blue[50], fontSize: 12),
+                style: TextStyle(color: Colors.blue[100], fontSize: 14),
               ),
             ],
           ),
         ),
-        const SizedBox(width: 8),
+        const SizedBox(width: 10),
+
         // Botão "Novo"
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 8),
-          decoration: BoxDecoration(
-            color: Colors.blue[800],
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: TextButton.icon( // TextButton.icon é mais simples que Row dentro de ElevatedButton
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) => const AddCacheModal(),
-              );
-            },
-            icon: const Icon(Icons.add, size: 16, color: Colors.white),
-            label: const Text(
-              'Novo',
-              style: TextStyle(color: Colors.white, fontSize: 12),
+        FilledButton.icon(
+          style: FilledButton.styleFrom(
+            backgroundColor: Colors.blue[800], // Background color
+            foregroundColor: Colors.blue[100], // Text color
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8), // Square-ish edges
             ),
           ),
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) => const AddCacheModal(),
+            );
+          },
+          label: const Text("Novo cache"),
+          icon: const Icon(Icons.add),
         ),
+        const SizedBox(width: 12),
         IconButton(
           onPressed: () => {
             servicoAuth.logout(),

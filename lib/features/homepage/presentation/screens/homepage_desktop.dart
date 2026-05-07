@@ -3,6 +3,8 @@ import 'package:projeto_integrador/features/homepage/domain/models/geocache.dart
 
 import 'package:projeto_integrador/features/homepage/presentation/widgets/cache_detail.dart';
 
+import '../widgets/cache_list_item.dart';
+
 class HomepageDesktop extends StatefulWidget {
   // Os dados atuais (O que ele exibe)
   final FilterType selectedFilter;
@@ -98,9 +100,9 @@ class _HomepageDesktopState extends State<HomepageDesktop> {
                 child: ListView.builder(
                   itemCount: widget.filteredCaches.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(widget.filteredCaches[index].name),
-                      selected: widget.selectedCacheIndex == index,
+                    return CacheListItem(
+                      cache: widget.filteredCaches[index],
+                      isSelected: widget.selectedCacheIndex == index,
                       onTap: () => widget.onCacheSelected(index),
                     );
                   },

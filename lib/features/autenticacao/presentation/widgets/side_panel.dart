@@ -30,7 +30,7 @@ class SidePanel extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.only(bottom: 20),
             child: Text(
-              'Por: Allan, Carlos, Hugo, Ryu, Renan e Emanuelly. Turma BCC-A 5º Termo',
+              'Por: Allan, Hugo, Ryu e Renan. Turma BCC-A 5º Termo',
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white, fontSize: 12),
             ),

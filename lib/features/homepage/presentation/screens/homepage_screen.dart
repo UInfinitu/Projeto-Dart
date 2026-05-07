@@ -80,6 +80,36 @@ class _HomepageScreenState extends State<HomepageScreen> {
       totalFound: 20,
       createdAt: "12/08/2025"
     ),
+    GeoCache(
+      name: 'Praça das Artes',
+      type: 'Pequeno',
+      distance: 2.1,
+      difficulty: 1,
+      terrain: 1,
+      duration: 'D: 1.5 / T: 1',
+      favorites: 31,
+      description: 'Cache fácil em praça com vida cultural intensa',
+      tip: 'Próximo ao palco do lado direito',
+      latitude: -23.5705,
+      longitude: -46.6433,
+      totalFound: 20,
+      createdAt: "12/08/2025"
+    ),
+    GeoCache(
+      name: 'Praça das Artes',
+      type: 'Pequeno',
+      distance: 2.1,
+      difficulty: 1,
+      terrain: 1,
+      duration: 'D: 1.5 / T: 1',
+      favorites: 31,
+      description: 'Cache fácil em praça com vida cultural intensa',
+      tip: 'Próximo ao palco do lado direito',
+      latitude: -23.5705,
+      longitude: -46.6433,
+      totalFound: 20,
+      createdAt: "12/08/2025"
+    ),
   ];
 
   List<GeoCache> get filteredCaches {

@@ -126,7 +126,7 @@ class CacheDetailCard extends StatelessWidget {
                   cache.name,
                   style: const TextStyle(
                     fontWeight: FontWeight.w700,
-                    fontSize: 18,
+                    fontSize: 28,
                     color: Colors.black87,
                   ),
                 ),
