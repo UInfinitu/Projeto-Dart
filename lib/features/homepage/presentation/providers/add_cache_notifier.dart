@@ -2,13 +2,14 @@ import 'package:flutter/foundation.dart';
 
 import 'package:projeto_integrador/core/exceptions/app_exceptions.dart';
 import 'package:projeto_integrador/data/services/cache_service.dart';
-import 'package:projeto_integrador/db/dao/cachepoint_dao.dart';
+// import 'package:projeto_integrador/db/dao/cachepoint_dao.dart';
 import 'package:projeto_integrador/models/cachepoint.dart';
+import 'package:projeto_integrador/models/enums.dart';
 
 class AddCacheNotifier extends ChangeNotifier {
-  AddCacheNotifier(this._dao, this._cacheService);
+  AddCacheNotifier(this._cacheService);
 
-  final CachepointDao _dao;
+  // final CachepointDao _dao;
   final CacheService _cacheService;
 
   String? cacheType;
@@ -29,8 +30,21 @@ class AddCacheNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setDifficulty(int value) {
-    difficulty = value;
+  void setDifficulty(DificultyLevel value) {
+    switch (value) {
+      case DificultyLevel.easy:
+        difficulty = 1;
+        break;
+      case DificultyLevel.medium:
+        difficulty = 2;
+        break;
+      case DificultyLevel.hard:
+        difficulty = 3;
+        break;
+      case DificultyLevel.extreme:
+        difficulty = 4;
+        break;
+    }
     notifyListeners();
   }
 
@@ -64,12 +78,14 @@ class AddCacheNotifier extends ChangeNotifier {
         description: description,
         latitude: latitude,
         longitude: longitude,
-        difficultyLevel: _difficultyToString(difficulty),
+        difficultyLevel: _difficultyFromInt(difficulty),
         tip: tip,
       );
 
+      /*
       await _dao.insert(cachepoint.toMap());
       await _dao.invalidarCache();
+      */
 
       return cachepoint;
     } on AppException catch (e) {
@@ -84,12 +100,12 @@ class AddCacheNotifier extends ChangeNotifier {
     }
   }
 
-  String _difficultyToString(int value) {
+  DificultyLevel _difficultyFromInt(int value) {
     return switch (value) {
-      1 => 'easy',
-      2 => 'medium',
-      3 => 'hard',
-      _ => 'extreme',
+      1 => DificultyLevel.easy,
+      2 => DificultyLevel.medium,
+      3 => DificultyLevel.hard,
+      _ => DificultyLevel.extreme,
     };
   }
 }

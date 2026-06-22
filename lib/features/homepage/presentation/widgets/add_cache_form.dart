@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_integrador/models/enums.dart';
 import 'package:projeto_integrador/providers/servico_autenticacao.dart';
 import 'package:provider/provider.dart';
 
@@ -41,11 +42,13 @@ class _AddCacheFormState extends State<AddCacheForm> {
     super.dispose();
   }
 
-  Future<void> _submit(AddCacheNotifier formNotifier) async {
+Future<void> _submit(AddCacheNotifier formNotifier) async {
     if (!_formKey.currentState!.validate()) return;
     FocusScope.of(context).unfocus();
 
     final auth = context.read<ServicoAutenticacao>();
+
+    final String? tipValue = formNotifier.hasHint ? _hintController.text : null;
 
     final ok = await formNotifier.submit(
       token: auth.token ?? '',
@@ -54,6 +57,7 @@ class _AddCacheFormState extends State<AddCacheForm> {
       latitude: -23.5505,
       longitude: -46.6333,
       creatorId: auth.currentUser?.id ?? '',
+      tip: tipValue,
     );
 
     if (!mounted) return;
@@ -217,7 +221,17 @@ class _AddCacheFormState extends State<AddCacheForm> {
     final difficultySelector = RatingSelector(
       label: 'Dificuldade',
       value: notifier.difficulty,
-      onChanged: notifier.setDifficulty,
+      onChanged: (int value) {
+        final difficultyLevels = [
+          DificultyLevel.easy,
+          DificultyLevel.medium,
+          DificultyLevel.hard,
+          DificultyLevel.extreme,
+        ];
+        if (value > 0 && value <= difficultyLevels.length) {
+          notifier.setDifficulty(difficultyLevels[value - 1]);
+        }
+      },
     );
 
     final terrainSelector = RatingSelector(
