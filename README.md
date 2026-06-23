@@ -1,13 +1,41 @@
 # GeoQuest
 
+## Preview
+
+### Home page
+<img width="1919" height="908" alt="image" src="https://github.com/user-attachments/assets/94c4dde5-c591-409a-b92b-94ba7196f788" />
+
+### New Cache modal
+<img width="1919" height="909" alt="image" src="https://github.com/user-attachments/assets/efe90b7f-d3e1-4ac5-827a-0d48e57f893a" />
+
+### Login / Sign up page
+<img width="1919" height="911" alt="image" src="https://github.com/user-attachments/assets/3703b53b-d88f-4d86-851f-14000f6d71a8" />
+
+## Figma
+<img width="991" height="804" alt="image" src="https://github.com/user-attachments/assets/09a20bbe-82bf-4f24-b1c3-fa1b5c079a69" />
+
+#### Link: https://www.figma.com/community/file/1651059827868210061
+
+Members & Responsabilities:
+- Allan Shinhama, Figma web and mobile design - github.com/AllanShima
+- Guilherme Ryu, Flutter widgets - github.com/Ryzoppi
+- Hugo Facchini, Flutter widgets - github.com/UInfinitu
+- Renan, Flutter widgets - github.com/RenanHikaru
+
+## Documentation
+- [Português](#português)
+- [English](#english)
+
+---
+
+# Português
+> Projeto final de semestre em Flutter
 
 ## Funcionamento
 * *Login*: Usuário faz o login, não possui autenticação por ser dados mockados;
 * *Criação do Cache*: Usuário logado cria um cache novo com qualquer dado;
 * *Download do qr code*: No cache, o usuário logado consegue fazer o download do qrcode e colocar junto ao cache no endereço imposto;
 * *Escaneamento*: Pra marcá-lo como encontrado, os usuários clicam no botão de "Escanear QrCode" do cache escolhido, e aponta o qrcode com a câmera (disponível em web somente);
-
----
 
 ## 📌 Problemas que resolve
 * *Incentivo para atividades livres:* Estimula a exploração e o movimento físico.
@@ -27,4 +55,34 @@
 * *Câmera:* Utilizada para a interação com os códigos físicos.
 * *Leitura de QR Code:* Módulo de scanner integrado ao app.
 * *Gerador de QR Code:* Ferramenta para criar os códigos de novos pontos de cache.
+
+---
+
+# English
+> Semester's final project in flutter
+
+## Operation
+* *Login*: The user logs in; there is no authentication mechanism as the application uses mocked data.
+* *Cache Creation*: Once logged in, the user can create a new cache using any data.
+* *QR Code Download*: Within the cache details, the logged-in user can download a QR code to place alongside the physical cache at its designated location.
+* *Scanning*: To mark a cache as found, users click the "Scan QR Code" button for the selected cache and point their camera at the code (available on web only).
+
+## 📌 Problems It Solves
+* *Encouraging Outdoor Activities*: Stimulates exploration and physical movement.
+* *Socialization Opportunities*: Connects people through the discovery of new locations.
+* *Discovering New Places*: Fosters visits to local landmarks, scenic spots, or hidden gems around the city.
+
+## 👥 Target Audience
+* Anyone with free time looking for adventure or a new form of leisure.
+
+## 🚀 Key Features
+* *Creating Cache Points on the Map*: Allows users to hide and mark new challenges.
+* *Cache Ratings*: A rating and feedback system for the community.
+* *QR Code Cache Scanning*: In-person validation to confirm a cache has been found.
+
+## 🛠️ Technical Resources / Features
+* *GPS*: Used for geolocation and navigating to target points.
+* *Camera*: Used for interacting with physical codes.
+* *QR Code Scanning*: Scanner module integrated directly into the application.
+* *QR Code Generator*: A tool to create codes for newly established cache points.
 
